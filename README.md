@@ -94,4 +94,4 @@ The script is licensed with MIT License.
 ## Project Icon
 [Icon](https://www.flaticon.com/free-icon/layers_149243) made by [Smashicons](https://www.flaticon.com/authors/smashicons) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
 
-Copyright © 2019 **Álvaro López de Diego {raaowx}** <raaowx@icloud.com>
+Copyright © 2019 **Álvaro López de Diego {raaowx}** <raaowx@protonmail.com>
