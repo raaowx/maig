@@ -1,11 +1,14 @@
 # MAIG (Mobile App Icon Generator)
 
-## What is MAIG?
+## What is MAIG
+
 MAIG (_Mobile App Icon Generator_) is a bash script that automatically generates all necessary icons for Android or iOS platforms. The icons will be generated in all the resolutions needed for an Android or iOS app.
 
-<img src="./maig.png" width="25">
+<img
+src="./maig.png" width="25">
 
-## How it works?
+## How it works
+
 MAIG first analyze the parameters and look for the third party software it needs. If everything is correct, MAIG will check if the resolution of the original image is the minimal required for the selected platform. After that the generation will begin. When the scripts end, you can find all the generated icons in a folder called `MAIG` in the same location as the original image.
 
 **_Example:_**  
@@ -13,15 +16,18 @@ Path to the original image: `/path/to/original/image/foo.ext`
 Path to the MAIG folder where generated icons will be stored: `/path/to/original/image/MAIG`
 
 ### Third Party Software
+
 In the generation process, MAIG uses the [identify](https://www.imagemagick.org/script/identify.php) and [convert](https://imagemagick.org/script/convert.php) utilities for resizing the original image several times. Those utilities are included in the [Image Magick](https://imagemagick.org) software.
 
 ## Parameters
+
 `-A` : This parameter sets MAIG as Android icon generator.  
 `-I` : This parameter sets MAIG as iOS icon generator.  
 `-i` : This parameter sets the original image.  
 `-h` : Show the help message.
 
 ## Usage
+
 `maig.bash [-A|-I] -i /path/to/image/foo.ext`
 
 **_Example:_**  
@@ -29,6 +35,7 @@ In the generation process, MAIG uses the [identify](https://www.imagemagick.org/
 `maig.bash -A -i foo.ext` : This will generate all necessary iOS icons from `foo.ext`  
 
 ## Android Icons
+
 Android minimal resolution is 512x512 pixels (WxH).  
 For Android platform the following icons will be generated:  
 
@@ -45,6 +52,7 @@ WEB|512x512px|foo-WEB.ext
 **_Reference:_** [Android Documentation](https://material.io/design/iconography/)
 
 ## iOS Icons
+
 iOS minimal resolution is 1024x1024 pixels (WxH).  
 For iOS platform the following icons will be generated:  
 
@@ -86,12 +94,12 @@ Code|Description|
 10|Generic error 1: Generating app icons
 255|Generic error 2: Check help using parameter `-h` for more info
 
-
-
 ## License
+
 The script is licensed with MIT License.
 
 ## Project Icon
+
 [Icon](https://www.flaticon.com/free-icon/layers_149243) made by [Smashicons](https://www.flaticon.com/authors/smashicons) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
 
-Copyright © 2019 **Álvaro López de Diego {raaowx}** <raaowx@protonmail.com>
+Copyright © 2020 **Álvaro López de Diego {raaowx}** <raaowx@protonmail.com>
