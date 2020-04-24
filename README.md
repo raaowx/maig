@@ -1,11 +1,9 @@
 # MAIG (Mobile App Icon Generator)
 
-## What is MAIG
-
-MAIG (_Mobile App Icon Generator_) is a bash script that automatically generates all necessary icons for Android or iOS platforms. The icons will be generated in all the resolutions needed for an Android or iOS app.
-
 <img
 src="./maig.png" width="25">
+
+Mobile App Icon Generator (MAIG) is a bash script to generate all necessary icons for Android or iOS apps and stores
 
 ## How it works
 
