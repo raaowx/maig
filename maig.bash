@@ -2,33 +2,33 @@
 # === === === FUNCTIONS === === === #
 function help() {
   echo
-  echo "MAIG (Mobile App Icon Generator) is a bash script that automatically generates all necessary icons for Android or iOS platforms."
+  echo "Mobile App Icon Generator (MAIG) is a bash script to generate all necessary icons for Android or iOS apps and stores."
   echo
-  echo "# > DESCRIPTION < #"
+  echo "# === Description === #"
   echo
   echo "  MAIG will generate icons in all the resolutions needed for an Android or iOS app."
   echo "  In this process, MAIG uses the 'identify' and 'convert' utilities for resizing the original image several times. Those utilities are included in the Image Magick software."
   echo "  The original image should be squared. For Android the minimal resolution is 512x512 pixels (WxH), for iOS the minimal resolution is 1024x1024 pixels (WxH)."
   echo "  Generated icons will be stored on a folder called MAIG. This folder will be generated in the same location as the original image."
   echo
-  echo "# > PARAMETERS < #"
+  echo "# === Parameters === #"
   echo
   echo "  -A : This parameter sets MAIG as Android icon generator."
   echo "  -I : This parameter sets MAIG as iOS icon generator."
   echo "  -i : This parameter sets the original image."
   echo "  -h : Show this message."
   echo
-  echo "# > USAGE < #"
+  echo "# === Usage === #"
   echo
   echo "  maig.bash [-A|-I] -i image"
   echo
-  echo "# > EXAMPLES < #"
+  echo "# === Examples === #"
   echo
   echo "  maig.bash -A -i foo.png -> This will generate all necessary Android icons from foo.png"
   echo
   echo "  maig.bash -I -i foo.jpg -> This will generate all necessary iOS icons from foo.jpg"
   echo
-  echo "# > ANDROID ICONS LIST < #"
+  echo "# === Android icon list === #"
   echo
   echo "  For Android platform the following icons will be generated:"
   echo "    * LDPI    : 36x36   px"
@@ -42,7 +42,7 @@ function help() {
   echo "  Reference: https://material.io/design/iconography/"
   echo
   echo
-  echo "# > IOS ICONS LIST < #"
+  echo "# === iOS icon list === #"
   echo
   echo "  For iOS platform the following icons will be generated"
   echo "    * 20-1x   : 20x20     px --- 20-2x   : 40x40   px --- 20-3x : 60x60   px"
@@ -54,7 +54,6 @@ function help() {
   echo "    * 1024-1x : 1024x1024 px"
   echo "  Reference: https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/"
   echo
-  echo "# > --- --- --- < #"
   exit 0
 }
 function errorMessages() {
@@ -151,7 +150,7 @@ function goodbye() {
     echo
     echo "All generated icon are stored in '$INPUTPATH/$OUTPUTDIR'."
     echo
-    echo "# > SUCCESFULLY GENERATED ALL ICONS < #"
+    echo "# === Icons successfully generated === #"
   else
     errorMessages 10
   fi
