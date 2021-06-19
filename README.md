@@ -1,9 +1,26 @@
 # MAIG (Mobile App Icon Generator)
 
 <img
-src="./maig.png" width="25">
+src="./maig.png"
+width="32">
 
 Mobile App Icon Generator (MAIG) is a bash script to generate all necessary icons for Android or iOS apps and stores
+
+**Table of Contents:**
+
+- [MAIG (Mobile App Icon Generator)](#maig-mobile-app-icon-generator)
+  - [How it works](#how-it-works)
+    - [Third Party Software](#third-party-software)
+  - [Parameters](#parameters)
+  - [Usage](#usage)
+  - [Android Icons](#android-icons)
+  - [iOS Icons](#ios-icons)
+  - [Exit Codes](#exit-codes)
+  - [Credits](#credits)
+    - [Project Icon](#project-icon)
+  - [License & Copyright](#license--copyright)
+
+---
 
 ## How it works
 
@@ -92,12 +109,14 @@ Code|Description|
 10|Generic error 1: Generating app icons
 255|Generic error 2: Check help using parameter `-h` for more info
 
-## License
+## Credits
 
-The script is licensed with MIT License.
-
-## Project Icon
+### Project Icon
 
 [Icon](https://www.flaticon.com/free-icon/layers_149243) made by [Smashicons](https://www.flaticon.com/authors/smashicons) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
+
+## License & Copyright
+
+The script is licensed with MIT License.
 
 Copyright © 2020 **Álvaro López de Diego {raaowx}** <raaowx@protonmail.com>

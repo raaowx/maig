@@ -58,95 +58,94 @@ function help() {
 }
 function errorMessages() {
   case $1 in
-    1)
-      echo
-      echo "[ERROR] MAIG script needs parameters for work correctly. Please, refer to help using '-h' parameter for more info."
-      echo
-      exit 1
-      ;;
-    2)
-      echo
-      echo "[ERROR] Invalid option '-$2'. Please, refer to help using parameter '-h' for more info."
-      echo
-      exit 2
-      ;;
-    3)
-      echo
-      echo "[ERROR] Option '-$2' requires an argument. Please, refere to help using parameter '-h' for more info."
-      echo
-      exit 3
-      ;;
-    4)
-      echo
-      echo "[ERROR] MAIG is already set to create $2 icons. Please, run the script again using only '-A' or '-I'. Refer to help with '-h' for more info."
-      echo
-      exit 4
-      ;;
-    5)
-      echo
-      echo "[ERROR] MAIG script needs utility '$2'. It can be found in the ImageMagick software. Please, install it or include it on PATH variable. Refer to help using parameter '-h' for more info."
-      echo
-      exit 5
-      ;;
-    6)
-      echo
-      echo "[ERROR] MAIG script needs parameter '-i' with an input file for work correctly. Please, refer to help using parameter '-h' for more info."
-      echo
-      exit 6
-      ;;
-    7)
-      echo
-      echo "[ERROR] Seems like you don't have read or write permissions over $INPUTFILE or $INPUTPATH. Please, check the permissions and try again."
-      echo
-      exit 7
-      ;;
-    8)
-      echo
-      echo "[ERROR] Original image should be squared. The given image have $2x$3 pixels (WxH)."
-      echo
-      exit 8
-      ;;
-    9)
-      echo
-      echo "[ERROR] For generating icons for $2 the original image should be at least $3x$3 pixels (WxH)."
-      echo
-      exit 9
-      ;;
-    10)
-      echo
-      echo "[ERROR] Generating app icons. Please, try again."
-      echo
-      exit 10
-      ;;
-    *)
-      echo
-      echo "[ERROR] Check 'help' using parameter '-h' for more info."
-      echo
-      exit 255
-      ;;
+  1)
+    echo
+    echo "[ERROR] MAIG script needs parameters for work correctly. Please, refer to help using '-h' parameter for more info."
+    echo
+    exit 1
+    ;;
+  2)
+    echo
+    echo "[ERROR] Invalid option '-$2'. Please, refer to help using parameter '-h' for more info."
+    echo
+    exit 2
+    ;;
+  3)
+    echo
+    echo "[ERROR] Option '-$2' requires an argument. Please, refere to help using parameter '-h' for more info."
+    echo
+    exit 3
+    ;;
+  4)
+    echo
+    echo "[ERROR] MAIG is already set to create $2 icons. Please, run the script again using only '-A' or '-I'. Refer to help with '-h' for more info."
+    echo
+    exit 4
+    ;;
+  5)
+    echo
+    echo "[ERROR] MAIG script needs utility '$2'. It can be found in the ImageMagick software. Please, install it or include it on PATH variable. Refer to help using parameter '-h' for more info."
+    echo
+    exit 5
+    ;;
+  6)
+    echo
+    echo "[ERROR] MAIG script needs parameter '-i' with an input file for work correctly. Please, refer to help using parameter '-h' for more info."
+    echo
+    exit 6
+    ;;
+  7)
+    echo
+    echo "[ERROR] Seems like you don't have read or write permissions over $INPUTFILE or $INPUTPATH. Please, check the permissions and try again."
+    echo
+    exit 7
+    ;;
+  8)
+    echo
+    echo "[ERROR] Original image should be squared. The given image have $2x$3 pixels (WxH)."
+    echo
+    exit 8
+    ;;
+  9)
+    echo
+    echo "[ERROR] For generating icons for $2 the original image should be at least $3x$3 pixels (WxH)."
+    echo
+    exit 9
+    ;;
+  10)
+    echo
+    echo "[ERROR] Generating app icons. Please, try again."
+    echo
+    exit 10
+    ;;
+  *)
+    echo
+    echo "[ERROR] Check 'help' using parameter '-h' for more info."
+    echo
+    exit 255
+    ;;
   esac
 }
 function genIcons() {
   echo "Starting $1 icon generation..."
   echo
-  cd "$INPUTPATH"
+  cd "$INPUTPATH" || errorMessages 7
   COUNT=0
-  for i in ${ICONLIST[@]}; do
-    convert "$INPUTFILE" -resize $ix$i "$OUTPUTDIR/${INPUTFILE%%.*}-${ICONNAME[$COUNT]}.${INPUTFILE#*.}"
-    if [[ $? -eq 0 ]]; then
-      echo "[SUCCESS] Generating icon with size $ix$i."
+  for i in "${ICONLIST[@]}"; do
+    if convert "$INPUTFILE" -resize "$i x $i" "$OUTPUTDIR/${INPUTFILE%%.*}-${ICONNAME[$COUNT]}.${INPUTFILE#*.}"; then
+      echo "[SUCCESS] Generating icon with size $i x $i."
     else
-      echo "[ERROR] Generating icon with size $ix$i."
+      echo "[ERROR] Generating icon with size $i x $i."
     fi
-    COUNT=$(( $COUNT + 1 ))
+    COUNT=$((COUNT + 1))
   done
-  goodbye
+  goodbye $?
 }
 function cleanMaig() {
   rmdir "$INPUTPATH/$OUTPUTDIR"
 }
 function goodbye() {
-  if [[ $? -eq 0 ]]; then
+  if [[ $1 -eq 0 ]]; then
     echo
     echo "All generated icon are stored in '$INPUTPATH/$OUTPUTDIR'."
     echo
@@ -172,44 +171,42 @@ if [[ $# -eq 0 ]]; then
 fi
 while getopts ":AIhi:" opt; do
   case ${opt} in
-    A)
-      if [[ "$IOS" == "false" ]]; then
-        ANDROID=true
-      else
-        errorMessages 4 iOS
-      fi
-      ;;
-    I)
-      if [[ "$ANDROID" == "false" ]]; then
-        IOS=true
-      else
-        errorMessages 4 Android
-      fi
-      ;;
-    h)
-      help
-      ;;
-    i)
-      INPUTPATH=$(dirname "$OPTARG")
-      INPUTFILE=$(basename "$OPTARG")
-      ;;
-    *)
-      if [[ "$opt" == "?" ]]; then
-        errorMessages 2 "$OPTARG"
-      elif [[ "$opt" == ":" ]]; then
-        errorMessages 3 "$OPTARG"
-      else
-        errorMessages
-      fi
-      ;;
+  A)
+    if [[ "$IOS" == "false" ]]; then
+      ANDROID=true
+    else
+      errorMessages 4 iOS
+    fi
+    ;;
+  I)
+    if [[ "$ANDROID" == "false" ]]; then
+      IOS=true
+    else
+      errorMessages 4 Android
+    fi
+    ;;
+  h)
+    help
+    ;;
+  i)
+    INPUTPATH=$(dirname "$OPTARG")
+    INPUTFILE=$(basename "$OPTARG")
+    ;;
+  *)
+    if [[ "$opt" == "?" ]]; then
+      errorMessages 2 "$OPTARG"
+    elif [[ "$opt" == ":" ]]; then
+      errorMessages 3 "$OPTARG"
+    else
+      errorMessages
+    fi
+    ;;
   esac
 done
-which convert &> /dev/null
-if [[ $? -ne 0 ]]; then
+if ! which convert &>/dev/null; then
   errorMessages 5 convert
 fi
-which identify &> /dev/null
-if [[ $? -ne 0 ]]; then
+if ! which identify &>/dev/null; then
   errorMessages 5 identify
 fi
 if [[ "$INPUTPATH" == "" ]] || [[ "$INPUTFILE" == "" ]]; then
@@ -250,7 +247,7 @@ if [[ -w $INPUTPATH ]] && [[ -r "$INPUTPATH/$INPUTFILE" ]]; then
     fi
   else
     cleanMaig
-    errorMessages 8 $W $H
+    errorMessages 8 "$W" "$H"
   fi
 else
   errorMessages 7
